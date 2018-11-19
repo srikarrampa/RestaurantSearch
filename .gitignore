@@ -1,7 +1,6 @@
-/bin/
-/.settings/
+.settings/
 /.settings
-/.project
-/.classpath
+.project
+.classpath
 /.DS_Store
 .DS_Store

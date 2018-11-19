@@ -8,7 +8,7 @@ import com.restaurant.service.Methods;
 
 public class UserTableCompute {
 	
-	
+	//changes in user table
 	public void compute(Scanner scan)
 	{
 		Methods methods= new Methods();
