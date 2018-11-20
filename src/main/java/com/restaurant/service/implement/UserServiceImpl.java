@@ -1,11 +1,14 @@
-package com.restaurant.service;
+package com.restaurant.service.implement;
 
 import java.util.Scanner;
 import java.sql.*;
 
-import com.restaurant.entity.User;
 
-public class Methods implements Initialize {
+import com.restaurant.entity.User;
+import com.restaurant.service.UserService;
+import com.restaurant.util.UserUtil;
+
+public class UserServiceImpl implements UserService {
 	
 	public void post(int n,Scanner scan,Connection myCon)
 	{

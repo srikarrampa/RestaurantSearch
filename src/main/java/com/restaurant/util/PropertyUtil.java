@@ -1,5 +1,6 @@
 package com.restaurant.util;
 import java.io.FileInputStream;
+import com.restaurant.properties.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -9,17 +10,17 @@ import java.sql.SQLException;
 import java.util.Properties;
 import java.util.*;
 
-public class Property {
+public class PropertyUtil {
 
 
 	    private static Connection con ;
 
 
-	    private Property() {
+	    private PropertyUtil() {
 	      // private constructor //
 	    }
 
-	    public static Connection getConnection(){
+	    public static Connection getConnection() throws SQLException{
 	    	Properties prop = new Properties();
 	    	InputStream input = null;
 
@@ -42,6 +43,10 @@ public class Property {
 				}
 	            catch (SQLException ex) {
 	                
+	            }
+	            finally
+	            {
+	            	con.close();
 	            }
 	        }
 

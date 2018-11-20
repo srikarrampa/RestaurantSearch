@@ -3,7 +3,7 @@ package com.restaurant;
 
 import java.util.*;
 
-import com.restaurant.util.UserTableCompute;
+import com.restaurant.util.UserUtil;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -13,19 +13,19 @@ import java.io.OutputStream;
 import java.util.Properties;
 import java.sql.*;
 
-public class WebApp
+public class RestaurantSearch
 {
 	
 	static Scanner scan;
-	public WebApp()
+	public RestaurantSearch()
 	{
 		scan = new Scanner(System.in);
 	}
     public static void main( String[] args ) throws ClassNotFoundException, SQLException
     {
-    	WebApp webApp= new WebApp();
-    	UserTableCompute computing = new UserTableCompute();
-    	computing.compute(webApp.scan);
+    	RestaurantSearch webApp= new RestaurantSearch();
+    	UserUtil computing = new UserUtil();
+    	computing.computeUser(webApp.scan);
 
 		
     	

@@ -4,18 +4,19 @@ import java.sql.*;
 import java.util.*;
 
 import com.restaurant.entity.User;
-import com.restaurant.service.Methods;
+import com.restaurant.util.PropertyUtil;
+import com.restaurant.service.implement.UserServiceImpl;
 
-public class UserTableCompute {
+public class UserUtil {
 	
 	//changes in user table
-	public void compute(Scanner scan)
+	public void computeUser(Scanner scan) throws SQLException
 	{
-		Methods methods= new Methods();
+		UserServiceImpl methods= new UserServiceImpl();
 		boolean flag= true;
 		System.out.println("Establishing Connection...");
 		
-		Connection myCon = Property.getConnection();
+		Connection myCon = PropertyUtil.getConnection();
 		
 		try {
 			
@@ -71,6 +72,10 @@ public class UserTableCompute {
 		{
 			exc.printStackTrace();
 		}	
+		finally
+		{
+			myCon.close();
+		}
 		
 	}
 
