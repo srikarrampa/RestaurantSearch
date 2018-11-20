@@ -35,24 +35,24 @@ public class UserUtil {
 				case 1:
 					System.out.println("enter the number of users you wish to enter into UserTable:");
 					int n = scan.nextInt();
-					methods.post(n,scan,myCon);
+					methods.postUser(n,scan,myCon);
 					//YYYY-MM-DD
 					break;
 				case 2:
 					System.out.println("enter the id which you wish to display:");
 					int ids= scan.nextInt();
-					methods.get(ids, scan, myCon);
+					methods.getUser(ids, scan, myCon);
 					break;
 				case 3:
 					User u = new User();
 					System.out.println("enter the id to be updated:");
 					u.setId(scan.nextInt());
-					methods.update(u.getId(), scan, myCon);
+					methods.updateUser(u.getId(), scan, myCon);
 					break;
 				case 4:
 					System.out.println("Enter the id which you wish to delete from the UserTable:");
 					int id = scan.nextInt();					
-					methods.delete(id, scan, myCon);
+					methods.deleteUser(id, scan, myCon);
 					break;
 				case 5:
 					flag=false;

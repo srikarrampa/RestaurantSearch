@@ -10,7 +10,7 @@ import com.restaurant.util.UserUtil;
 
 public class UserServiceImpl implements UserService {
 	
-	public void post(int n,Scanner scan,Connection myCon)
+	public void postUser(int n,Scanner scan,Connection myCon)
 	{
 		for(int i=0;i<n;i++)
 		{
@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 
-	public void update(int n,Scanner scan,Connection myCon) {
+	public void updateUser(int n,Scanner scan,Connection myCon) {
 		try
 		{
 			User u = new User();
@@ -65,7 +65,7 @@ public class UserServiceImpl implements UserService {
 		
 	}
 
-	public void delete(int n,Scanner scan,Connection myCon) {
+	public void deleteUser(int n,Scanner scan,Connection myCon) {
 		try {
 			String sql="delete from user where id_user= ? ";
 			PreparedStatement myStmt =  myCon.prepareStatement(sql);
@@ -80,7 +80,7 @@ public class UserServiceImpl implements UserService {
 		
 	}
 
-	public void get(int n,Scanner scan,Connection myCon) {
+	public void getUser(int n,Scanner scan,Connection myCon) {
 		
 		String sql2="select * from user where id_user=?";
 		try {
