@@ -1,25 +1,29 @@
 package com.restaurant.service.implement;
 
 import java.util.Scanner;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.sql.*;
 
-
+import com.restaurant.RestaurantSearch;
 import com.restaurant.entity.User;
 import com.restaurant.service.UserService;
-import com.restaurant.util.UserUtil;
 
 public class UserServiceImpl implements UserService {
 	
+	static Logger logger = LoggerFactory.getLogger(RestaurantSearch.class);
 	public void postUser(int n,Scanner scan,Connection myCon)
 	{
 		for(int i=0;i<n;i++)
 		{
 			User u = new User();
-			System.out.println("enter name:");
+			logger.info("enter name:");
 			u.setName(scan.next());
-			System.out.println("enter name of the person who created the user:");
+			logger.info("enter name of the person who created the user:");
 			u.setUserCreatedBy(scan.next());
-			System.out.println("enter the date:");
+			logger.info("enter the date:");
 			u.setUserCreatedDate(scan.next());
 			String sql = "insert into user (username,user_created_date,user_created_by) values(?,?,?)";
 			PreparedStatement myStat;
@@ -31,6 +35,7 @@ public class UserServiceImpl implements UserService {
 				myStat.executeUpdate();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
+				logger.warn("exception occured in postUser");
 				e.printStackTrace();
 			}
 			
@@ -42,11 +47,11 @@ public class UserServiceImpl implements UserService {
 		try
 		{
 			User u = new User();
-			System.out.println("enter updated name:");
+			logger.info("enter updated name:");
 			u.setName(scan.next());
-			System.out.println("enter name of the person who created the user:");
+			logger.info("enter name of the person who created the user:");
 			u.setUserCreatedBy(scan.next());
-			System.out.println("enter the date:");
+			logger.info("enter the date:");
 			u.setUserCreatedDate(scan.next());
 			
 			
@@ -59,6 +64,7 @@ public class UserServiceImpl implements UserService {
 			myState.executeUpdate();
 		}catch(Exception exc)
 		{
+			logger.warn("exception occured updateUser");
 			exc.printStackTrace();
 		}
 		
@@ -71,10 +77,11 @@ public class UserServiceImpl implements UserService {
 			PreparedStatement myStmt =  myCon.prepareStatement(sql);
 			myStmt.setInt(1, n);
 			int res=myStmt.executeUpdate();
-			System.out.println("no of rows affected="+res);
+			logger.info("no of rows affected="+res);
 		}
 		catch(Exception e)
 		{
+			logger.warn("exception occured in deleteUser");
 			e.printStackTrace();
 		}
 		
@@ -89,11 +96,12 @@ public class UserServiceImpl implements UserService {
 			ResultSet myRs=mySt.executeQuery();
 			while(myRs.next())
 			{
-				System.out.println(myRs.getInt("id_user")+","+myRs.getString("username")+","+myRs.getString("user_created_date")+","+myRs.getString("user_created_by"));
+				logger.info(myRs.getInt("id_user")+","+myRs.getString("username")+","+myRs.getString("user_created_date")+","+myRs.getString("user_created_by"));
 			}
 		}
 		catch(Exception exc)
 		{
+			logger.warn("exception occured getUser");
 			exc.printStackTrace();
 		}
 	}

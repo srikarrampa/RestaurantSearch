@@ -3,6 +3,10 @@ package com.restaurant.util;
 import java.sql.*;
 import java.util.*;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.restaurant.RestaurantSearch;
 import com.restaurant.entity.User;
 import com.restaurant.util.PropertyUtil;
 import com.restaurant.service.implement.UserServiceImpl;
@@ -10,11 +14,12 @@ import com.restaurant.service.implement.UserServiceImpl;
 public class UserUtil {
 	
 	//changes in user table
-	public void computeUser(Scanner scan) throws SQLException
+	static Logger logger = LoggerFactory.getLogger(RestaurantSearch.class);
+	public void computeUser(Scanner scan) throws SQLException, ClassNotFoundException
 	{
 		UserServiceImpl methods= new UserServiceImpl();
 		boolean flag= true;
-		System.out.println("Establishing Connection...");
+		logger.info("Establishing Connection...");
 		
 		Connection myCon = PropertyUtil.getConnection();
 		
@@ -22,45 +27,46 @@ public class UserUtil {
 			
 			while(flag)
 			{
-				System.out.println("choose an option");
-				System.out.println("1: post into UserTable");
-				System.out.println("2: get the UserTable");
-				System.out.println("3: update the value in a UserTable");
-				System.out.println("4: delete a value in a UserTable");
-				System.out.println("5: exit");
+				logger.info("choose an option");
+				logger.info("1: post into UserTable");
+				logger.info("2: get the UserTable");
+				logger.info("3: update the value in a UserTable");
+				logger.info("4: delete a value in a UserTable");
+				logger.info("5: exit");
 				
 				int num = scan.nextInt();
 				switch(num)
 				{
 				case 1:
-					System.out.println("enter the number of users you wish to enter into UserTable:");
+					logger.info("enter the number of users you wish to enter into UserTable:");
 					int n = scan.nextInt();
 					methods.postUser(n,scan,myCon);
 					//YYYY-MM-DD
 					break;
 				case 2:
-					System.out.println("enter the id which you wish to display:");
+					logger.info("enter the id which you wish to display:");
 					int ids= scan.nextInt();
 					methods.getUser(ids, scan, myCon);
 					break;
 				case 3:
 					User u = new User();
-					System.out.println("enter the id to be updated:");
+					//nothing
+					logger.info("enter the id to be updated:");
 					u.setId(scan.nextInt());
 					methods.updateUser(u.getId(), scan, myCon);
 					break;
 				case 4:
-					System.out.println("Enter the id which you wish to delete from the UserTable:");
+					logger.info("Enter the id which you wish to delete from the UserTable:");
 					int id = scan.nextInt();					
 					methods.deleteUser(id, scan, myCon);
 					break;
 				case 5:
 					flag=false;
 					myCon.close();
-					System.out.println("exiting..");
+					logger.info("exiting..");
 					break;
 				default:
-					System.out.println("invalid input");
+					logger.info("invalid input");
 				
 					
 					
